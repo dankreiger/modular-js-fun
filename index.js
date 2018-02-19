@@ -9,7 +9,7 @@ var element = {
   },
   create: function(elementType, content) {
     var node = document.createElement(elementType),
-      elNode = document.createTextNode(content);
+        elNode = document.createTextNode(content);
 
     node.appendChild(elNode);
     this.render(node);
@@ -22,6 +22,9 @@ var element = {
   },
   render: function(node) {
     if(this.container){
+      if(!node.className){
+        node.className += 'newElement';
+      }
       this.container.appendChild(node);
     } else {
       document.body.appendChild(node);
@@ -48,10 +51,10 @@ var element = {
     var container = document.createElement("DIV"),
         input = document.createElement("INPUT"),
         select = document.createElement("SELECT"),
-        css = 'select { display: block; margin-bottom: 2rem;} .container > * + * + * {word-wrap: break-word; width: 100%;}',
+        css = '.form-control {border-radius: 0;} select { display: block; margin-bottom: 2rem;} .container {padding-top: 3rem;} .newElement {word-wrap: break-word; width: 100%;}',
         head = document.head || document.getElementsByTagName('head')[0],
         style = document.createElement('style'),
-        options = ["h1","h2", "h3", "h4", "h5", "h6", "p", "code"];
+        options = ["h1","h2", "h3", "h4", "h5", "h6", "p", "pre", "code", "sub", "blockquote", "cite"];
 
     this.bootstrap4();
 
